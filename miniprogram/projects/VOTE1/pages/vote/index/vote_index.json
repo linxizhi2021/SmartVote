@@ -1,0 +1,8 @@
+{
+	"usingComponents": { 
+	}, 
+	"disableScroll": true, 
+	"navigationBarBackgroundColor": "#347DFF",
+	"navigationBarTextStyle": "white",
+	"navigationBarTitleText": "投票"
+}

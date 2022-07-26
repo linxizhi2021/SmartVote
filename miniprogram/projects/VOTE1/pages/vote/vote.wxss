@@ -1,0 +1,15 @@
+@import "../../style/skin.wxss";
+
+page {
+	--mainColor: #347DFF;
+	--mainColor2: #A376FB;
+	background-image: linear-gradient(var(--mainColor), var(--mainColor2), var(--mainColor));
+}
+
+.text-main {
+	color: var(--mainColor);
+}
+
+.text-main2 {
+	color: var(--mainColor2);
+}

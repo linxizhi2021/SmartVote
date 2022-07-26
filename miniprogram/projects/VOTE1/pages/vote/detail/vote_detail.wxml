@@ -1,0 +1,130 @@
+<view wx:if="{{isLoad===null}}" class="margin-top load notexist text-l load-project"></view>
+<view wx:if="{{isLoad===false}}" class="margin-top load loading text-l load-project"></view>
+
+<block wx:if="{{isLoad}}">
+	<wxs src="/tpls/wxs/tools.wxs" module="tools" />
+	<view class="main vote-detail" style="--color1--:{{color1}};--color2--:{{color2}};">
+		<image class="loading" mode="aspectFill" src="{{vote.VOTE_OBJ.cover}}" />
+		<view class="vote-detail-inner">
+			<view class="detail">
+				<view class="info-bg"></view>
+				<view class="info">
+					<view class="line1">
+						<view class="item">
+							<text class="num">{{vote.VOTE_USER_CNT}}</text>
+							<text class="desc">投票人数</text>
+						</view>
+						<view class="item">
+							<text class="num">{{vote.VOTE_CNT}}</text>
+							<text class="desc">累计票数</text>
+						</view>
+						<view class="item">
+							<text class="num">{{vote.VOTE_VIEW_CNT}}</text>
+							<text class="desc">访问量</text>
+						</view>
+					</view>
+					<block wx:if="{{isLoad}}">
+						<view class="line2" wx:if="{{!isStart||!isEnd}}">
+							<view class="left" wx:if="{{isStart&&!isEnd}}">距离投票结束：</view>
+							<view class="left text-red" wx:if="{{!isStart&&!isEnd}}">距离投票开始：</view>
+							<view class="time">
+								<text class="text-orange">{{clock[0]}}</text><text class="mark">天</text>
+								<text class="text-orange">{{clock[1]}}</text><text class="mark">小时</text>
+								<text class="text-orange">{{clock[2]}}</text><text class="mark">分</text>
+								<text class="text-orange">{{clock[3]}}</text><text class="mark">秒</text>
+							</view>
+						</view>
+						<view class="line2" wx:if="{{isStart&&isEnd}}">
+							<view class="time">
+								<text class="text-orange padding-xl text-xl">投票已结束</text>
+							</view>
+						</view>
+					</block>
+
+				</view>
+
+				<view class="search">
+					<input style="flex:1" model:value="{{search}}" maxlength="15" placeholder-class="phc" placeholder="输入标题/名称/编号查询" />
+					<text wx:if="{{search}}" bindtap="bindClearTap" class="close icon-roundclosefill"></text>
+					<view bindtap="bindSearchTap" class="search-btn">搜 索</view>
+				</view>
+
+				<view class="menu">
+					<view bindtap="bindShowTap" data-view="order" class="{{showView=='order'?'cur':''}}">按序号</view>
+					<view bindtap="bindShowTap" data-view="rank" class="{{showView=='rank'?'cur':''}}">按票数</view>
+					<view bindtap="bindShowTap" data-view="desc" class="{{showView=='desc'?'cur':''}}">简介须知</view>
+				</view>
+			</view>
+
+			<view class="data-list">
+				<!--最新begin-->
+				<view class="order-list" wx:if="{{showView=='order'}}">
+					<view class="no-data" wx:if="{{list.length==0}}">暂无匹配数据~</view>
+					<view class="item" wx:for="{{list}}" wx:key="key">
+						<view class="item-inner">
+							<view class="order shadow">{{item.idx+1}}号</view>
+							<image bindtap="url" data-url="../item/vote_item?idx={{item.idx}}&theme={{vote.VOTE_THEME}}" src="{{item.pic}}" class="loading" mode="aspectFill" />
+							<view class="line">
+								<text class="name content-cut-one">{{item.label}}</text>
+								<text class="num content-cut-one">{{item.cnt}}票</text>
+							</view>
+							<block wx:if="{{isLoad && isStart && !isEnd}}">
+								<view bindtap="bindVoteTap" data-idx="{{item.idx}}" wx:if="{{!tools.includes(myVoteIds,item.idx)}}" class="vote-btn">
+									<view class="vote shadow">立即投票</view>
+								</view>
+								<view wx:else class="vote-btn bt-grey light">
+									<view class="vote shadow bg-grey light">{{vote.VOTE_TYPE==0?'已投票':'今日已投'}}</view>
+								</view>
+							</block>
+						</view>
+					</view>
+				</view>
+				<!--最新END-->
+
+				<!--排行begin-->
+				<view class="rank-list" wx:if="{{showView=='rank'}}">
+					<view class="item">
+						<view class="item-inner" wx:for="{{orderList}}" wx:key="key" bindtap="url" data-url="../item/vote_item?idx={{item.idx}}&theme={{vote.VOTE_THEME}}">
+							<view class="no {{item.order==1?'text-red':''}} {{item.order==2?'text-orange':''}} {{item.order==3?'text-yellow':''}} {{item.order<=3?'text-bold':''}}">{{item.order}}</view>
+							<view class="img">
+								<image src="{{item.pic}}" class="loading" mode="aspectFill" />
+							</view>
+							<view class="line">
+								<text class="name content-cut-one">{{item.label}}</text>
+								<text class="num content-cut-one text-orange">编号：{{item.idx+1}}号</text>
+							</view>
+							<view class="end"><text class="text-orange">{{item.cnt}}</text>票</view>
+						</view>
+					</view>
+				</view>
+				<!--排行END-->
+
+				<!--图文begin-->
+				<view wx:if="{{showView=='desc'}}" class="article-box">
+					<view class="article">
+						<view wx:if="{{vote.VOTE_OBJ.desc.length==0}}">暂无简介与须知~</view>
+						<block wx:for="{{vote.VOTE_OBJ.desc}}" wx:key="key">
+							<view class="content" wx:if="{{item.type=='text'}}">
+								<text user-select="{{true}}">{{item.val}}</text>
+							</view>
+
+							<view class="pics" wx:if="{{item.type=='img'}}">
+								<image bindtap="url" data-type='img' data-url="{{item.val}}" show-menu-by-longpress="{{true}}" class="loading" mode='widthFix' lazy-load="true" src="{{item.val}}">
+								</image>
+							</view>
+						</block>
+					</view>
+				</view>
+				<!--图文END-->
+			</view>
+		</view>
+
+
+
+	</view> 
+ 
+
+	<cmpt-detail style="--color1--:{{color1}};--color2--:{{color2}};" topBtnShow="{{topBtnShow}}" oid="{{vote._id}}" cate="{{vote.VOTE_CATE_NAME}}" title="{{vote.VOTE_TITLE}}" cover="{{vote.VOTE_OBJ.cover[0]}}" qr="{{vote.VOTE_QR}}" desc="查看投票详情" bg="{{color1}}" />
+
+
+</block>

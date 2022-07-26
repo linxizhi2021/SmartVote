@@ -1,0 +1,9 @@
+{
+	"usingComponents": { 
+		"cmpt-detail": "/cmpts/biz/detail/detail_cmpt"
+	},
+	"enablePullDownRefresh": true,  
+	"navigationBarBackgroundColor": "#ffffff",
+	"navigationBarTextStyle": "black",
+	"navigationBarTitleText": "投票详情"
+}

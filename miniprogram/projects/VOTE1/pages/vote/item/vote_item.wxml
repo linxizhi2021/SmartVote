@@ -1,0 +1,35 @@
+<view class="main vote-content" style="--color1--:{{color1}};--color2--:{{color2}};">
+	<view class="content-inner">
+		<view class="line0">
+			<image bindtap="url" data-url="{{voteItem.pic}}" data-type="img" src="{{voteItem.pic}}" class="loading" mode="aspectFill" />
+		</view>
+		<view class="line1">{{voteItem.label}}</view>
+		<view class="line2">编号：{{voteItem.idx+1}}号</view>
+		<!--图文begin-->
+		<view class="article-box">
+			<view class="article">
+
+				<block wx:for="{{voteItem.content}}" wx:key="key">
+					<view class="content" wx:if="{{item.type=='text'}}">
+						<text user-select="{{true}}">{{item.val}}</text>
+					</view>
+
+					<view class="pics" wx:if="{{item.type=='img'}}">
+						<image bindtap="url" data-type='img' data-url="{{item.val}}" show-menu-by-longpress="{{true}}" class="loading" mode='widthFix' lazy-load="true" src="{{item.val}}">
+						</image>
+					</view>
+				</block>
+			</view>
+		</view>
+		<!--图文END-->
+	</view>
+
+
+</view>
+
+<cmpt-detail doFoot="{{false}}" doHome="{{false}}" doFav="{{false}}" oid="{{vote._id}}" cate="{{vote.VOTE_CATE_NAME}}" title="{{vote.VOTE_TITLE}}" cover="{{voteItem.pic}}" qr="{{vote.VOTE_QR}}" desc="快来为{{voteItem.idx+1}}号投票" bg="{{color1}}" />
+
+<!--回页首 begin-->
+<import src="../../../../../tpls/public/top_tpl.wxml" />
+<template is="topTpl" data="{{topBtnShow, bottom:180}}" />
+<!--回页首 end-->

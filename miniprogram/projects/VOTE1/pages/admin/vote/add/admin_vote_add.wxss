@@ -1,0 +1,77 @@
+@import '../../../../../../style/public/admin.wxss';
+
+.form-group .select-close {
+	width: 80rpx;
+	font-size: 40rpx !important;
+	font-weight: bold;
+	text-align: center;
+	height: 90rpx;
+	line-height: 90rpx;
+}
+
+.form-group .detail-set {
+	width: 80rpx;
+	font-size: 26rpx !important; 
+	text-align: center;
+	height: 90rpx;
+	line-height: 90rpx; 
+}
+
+.vote-item {
+	height: 100rpx;
+}
+
+.vote-item .pic {
+	width: 90rpx;
+	height: 90rpx;
+	background-color: #f2f2f2;
+	margin-right: 10rpx;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 50rpx;
+	color: #999;
+}
+
+.vote-item image {
+	width: 70rpx;
+	height: 70rpx;
+}
+
+.theme-list {
+	width: 100%;
+	padding: 20rpx 0rpx;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+}
+
+.theme-list .item {
+	width: 150rpx;
+	height: 150rpx;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.theme-list .item .item-inner {
+	width: 100rpx;
+	height: 100rpx;
+	border-radius: 50%;
+	background-color: #999;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: #fff;
+	font-size: 50rpx;
+	font-weight: bold;
+}
+
+.theme-form {
+	width: 50rpx;
+	height: 50rpx;
+	border-radius: 50%;
+	background-color: #999;
+	margin-right: 40rpx;
+}

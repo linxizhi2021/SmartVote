@@ -1,0 +1,93 @@
+{
+	"pages": [
+		"projects/VOTE1/pages/default/index/default_index",
+		"projects/VOTE1/pages/about/index/about_index",
+		"projects/VOTE1/pages/search/search",
+		"projects/VOTE1/pages/my/index/my_index",
+		"projects/VOTE1/pages/my/reg/my_reg",
+		"projects/VOTE1/pages/my/edit/my_edit",
+		"projects/VOTE1/pages/my/foot/my_foot",
+		"projects/VOTE1/pages/my/fav/my_fav",
+		"projects/VOTE1/pages/news/index/news_index",
+		"projects/VOTE1/pages/news/detail/news_detail",
+		"projects/VOTE1/pages/admin/news/list/admin_news_list",
+		"projects/VOTE1/pages/admin/news/add/admin_news_add",
+		"projects/VOTE1/pages/admin/news/edit/admin_news_edit",
+		"projects/VOTE1/pages/admin/setup/about/admin_setup_about",
+		"projects/VOTE1/pages/admin/setup/qr/admin_setup_qr",
+		"projects/VOTE1/pages/admin/index/home/admin_home",
+		"projects/VOTE1/pages/admin/index/login/admin_login",
+		"projects/VOTE1/pages/admin/content/admin_content",
+		"projects/VOTE1/pages/admin/mgr/log/admin_log_list",
+		"projects/VOTE1/pages/admin/mgr/edit/admin_mgr_edit",
+		"projects/VOTE1/pages/admin/mgr/list/admin_mgr_list",
+		"projects/VOTE1/pages/admin/mgr/add/admin_mgr_add",
+		"projects/VOTE1/pages/admin/mgr/pwd/admin_mgr_pwd",
+		"projects/VOTE1/pages/admin/user/list/admin_user_list",
+		"projects/VOTE1/pages/admin/user/detail/admin_user_detail",
+		"projects/VOTE1/pages/admin/user/export/admin_user_export",
+		"projects/VOTE1/pages/vote/index/vote_index",
+		"projects/VOTE1/pages/vote/detail/vote_detail",
+		"projects/VOTE1/pages/admin/vote/list/admin_vote_list",
+		"projects/VOTE1/pages/admin/vote/add/admin_vote_add",
+		"projects/VOTE1/pages/admin/vote/edit/admin_vote_edit",
+		"projects/VOTE1/pages/admin/vote/content/admin_vote_content",
+		"projects/VOTE1/pages/vote/item/vote_item",
+		"projects/VOTE1/pages/vote/my_join_list/vote_my_join_list",
+		"projects/VOTE1/pages/admin/vote/stat/admin_vote_stat",
+		"projects/VOTE1/pages/admin/vote/export/admin_vote_export",
+		"cmpts/public/form/form_set/field/form_set_field",
+		"cmpts/public/form/form_show/content/form_show_content",
+		"pages/test1/test1"
+	],
+	"window": {
+		"backgroundColor": "#f1f1f1",
+		"backgroundTextStyle": "dark",
+		"navigationBarBackgroundColor": "#347DFF",
+		"navigationBarTitleText": "CC投票小程序",
+		"navigationBarTextStyle": "white"
+	},
+	"tabBar": {
+		"custom": false,
+		"backgroundColor": "#FFFFFF",
+		"color": "#999999",
+		"selectedColor": "#347DFF",
+		"list": [
+			{
+				"pagePath": "projects/VOTE1/pages/default/index/default_index",
+				"text": "首页",
+				"iconPath": "/projects/VOTE1/images/tabbar/home.png",
+				"selectedIconPath": "/projects/VOTE1/images/tabbar/home_cur.png"
+			},
+			{
+				"pagePath": "projects/VOTE1/pages/news/index/news_index",
+				"text": "动态",
+				"iconPath": "/projects/VOTE1/images/tabbar/news.png",
+				"selectedIconPath": "/projects/VOTE1/images/tabbar/news_cur.png"
+			},
+			{
+				"pagePath": "projects/VOTE1/pages/vote/index/vote_index",
+				"text": "投票",
+				"iconPath": "/projects/VOTE1/images/tabbar/vote.png",
+				"selectedIconPath": "/projects/VOTE1/images/tabbar/vote_cur.png"
+			}, 
+			{
+				"pagePath": "projects/VOTE1/pages/my/index/my_index",
+				"text": "我的",
+				"iconPath": "/projects/VOTE1/images/tabbar/my.png",
+				"selectedIconPath": "/projects/VOTE1/images/tabbar/my_cur.png"
+			}
+		]
+	}, 
+	"permission": {
+		"scope.userLocation": {
+			"desc": "获取你当前位置信息用于小程序位置接口的效果展示"
+		}
+	},
+	"usingComponents": {
+		"cmpt-comm-list": "/cmpts/public/list/comm_list_cmpt",
+		"cmpt-picker": "/cmpts/public/picker/picker_cmpt",
+		"cmpt-modal": "/cmpts/public/modal/modal_cmpt"
+	},
+	"sitemapLocation": "sitemap.json"
+}

@@ -1,0 +1,8 @@
+{
+	"usingComponents": { 
+		"cmpt-detail": "/cmpts/biz/detail/detail_cmpt"
+	}, 
+	"navigationBarBackgroundColor": "#ffffff",
+	"navigationBarTextStyle": "black",
+	"navigationBarTitleText": "详情"
+}

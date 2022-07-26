@@ -1,0 +1,124 @@
+<view class="form-box shadow">
+	<view class="form-group">
+		<view class="title must">标题</view>
+	</view>
+
+	<view class="form-group">
+		<input placeholder="简短的标题" placeholder-class="phc" model:value="{{formTitle}}" focus="{{formTitleFocus}}" maxlength="50"></input>
+	</view>
+	<view wx:if="{{formTitleFocus}}" class="hint-desc error">{{formTitleFocus}}</view>
+
+
+	<view wx:if="{{cateIdOptions.length>1}}" class="form-group arrow" id="formCateId">
+		<view class="title must">分类</view>
+		<cmpt-picker id="cate-picker" sourceData="{{cateIdOptions}}" bind:select="url" data-type="picker" data-item="formCateId" item="{{formCateId}}"> </cmpt-picker>
+	</view>
+	<view wx:if="{{formCateIdFocus}}" class="hint-desc error">{{formCateIdFocus}}</view>
+
+	<view class="form-group">
+		<view class="title must">排序号<text class="text-grey text-normal margin-left-xs">(小的先显示)</text></view>
+		<input placeholder="排序号，小的先显示" type="number" placeholder-class="phc" model:value="{{formOrder}}" focus="{{formOrderFocus}}" maxlength="4"></input>
+	</view>
+	<view wx:if="{{formOrderFocus}}" class="hint-desc error">{{formOrderFocus}}</view>
+
+
+	<view class="form-group arrow" id="formStart">
+		<view class="title must">开始时间</view>
+		<cmpt-picker-time mark="formStart" mode="fullminute" timeModeStep="5" bind:select="url" data-type="picker" data-item="formStart" endYear="2025" item="{{formStart}}">
+			<view class="form-text">{{formStart||'请选择'}}</view>
+		</cmpt-picker-time>
+	</view>
+	<view wx:if="{{formStartFocus}}" class="hint-desc error">{{formStartFocus}}</view>
+
+	<view class="form-group arrow" id="formEnd">
+		<view class="title must">截止时间</view>
+		<cmpt-picker-time mark="formEnd" mode="fullminute" timeModeStep="5" bind:select="url" data-type="picker" data-item="formEnd" endYear="2025" item="{{formEnd}}">
+			<view class="form-text">{{formEnd||'请选择'}}</view>
+		</cmpt-picker-time>
+	</view>
+	<view wx:if="{{formEndFocus}}" class="hint-desc error">{{formEndFocus}}</view>
+
+
+	<view class="form-group">
+		<view class="title must">投票前是否需要注册</view>
+		<switch wx:if="{{formIsReg}}" bindchange="switchModel" data-item="formIsReg" class="green sm" checked="true">
+		</switch>
+		<switch wx:elif="{{!formIsReg}}" bindchange="switchModel" data-item="formIsReg" class="green sm">
+		</switch>
+	</view>
+
+	<view class="form-group">
+		<view class="title must">是否显示开始时间（列表里）</view>
+		<switch wx:if="{{formShowStart}}" bindchange="switchModel" data-item="formShowStart" class="green sm" checked="true">
+		</switch>
+		<switch wx:elif="{{!formShowStart}}" bindchange="switchModel" data-item="formShowStart" class="green sm">
+		</switch>
+	</view>
+
+	<view class="form-group arrow" bindtap="bindSelectThemeTap">
+		<view class="title must">主题色</view>
+		<view class="theme-form" style="background-image: linear-gradient({{theme[formTheme].color1}}, {{theme[formTheme].color2}})"></view>
+	</view>
+
+	<view class="form-group">
+		<view class="title must">投票模式</view>
+		<radio-group bindchange="model" data-item="formType">
+			<label>
+				<radio value="0" checked="{{formType==0?true:false}}" /> <text class=" margin-left-xs">全程</text>
+			</label>
+			<label>
+				<radio value="1" class="margin-left-l" checked="{{formType==1?true:false}}" /> <text class="margin-left-xs">每日可投</text>
+			</label>
+
+		</radio-group>
+	</view>
+	<view class="form-group">
+		<view class="title must">{{formType==0?'全程可投':'每日可投'}}票数</view>
+		<input placeholder="填写票数" type="number" placeholder-class="phc" model:value="{{formMaxCnt}}" focus="{{formMaxCntFocus}}" maxlength="4"></input>
+	</view>
+	<view wx:if="{{formMaxCntFocus}}" class="hint-desc error">{{formMaxCntFocus}}</view>
+
+	<view class="form-group" id="formVoteItem">
+		<view class="title must">投票选项配置 <text class="text-normal text-grey margin-left-s">(现有{{formItem.length}}项)</text></view>
+	</view>
+	<block wx:for="{{formItem}}" wx:key="key">
+		<view class="form-group vote-item" style="padding-right:0rpx;padding-left:5rpx">
+			<view bindtap='bindPicTap' data-idx="{{index}}" class="pic">
+				<image wx:if="{{item.pic}}" class="loading" src="{{item.pic}}" />
+				<text wx:else class="icon-cameraadd"></text>
+			</view>
+
+			<input bindinput='bindItemBlur' data-idx="{{index}}" placeholder="请输入选项{{index+1}} 内容" maxlength="50" focus="{{item.focus}}" placeholder-class="phc" value="{{item.label}}"></input>
+			<text bindtap="url" data-url="../content/admin_vote_content?idx={{index}}" class="detail-set text-blue"><text class="icon-settings"></text>详情</text>
+			<text bindtap="bindDelItemTap" data-idx="{{index}}" class="icon-roundclose margin-left-xs text-red select-close"></text>
+		</view>
+		<view wx:if="{{item.focus}}" class="hint-desc error">{{item.focus}}</view>
+	</block>
+
+	<view class="form-group" bindtap="bindAddItemTap">
+		<view class="title text-blue" style="font-weight:normal;font-size:30rpx;"> <text class="icon-roundaddfill margin-right-xs" style="font-size:40rpx;"></text>添加新选项
+		</view>
+
+	</view>
+
+</view>
+
+<view class="form-box shadow margin-top-xs">
+	<cmpt-form-show id="cmpt-form" mark="cmpt-form" source="admin" isCacheMatch="{{false}}" fields="{{fields}}" forms="{{formForms}}" isDefMatch="{{id?false:true}}">
+	</cmpt-form-show>
+</view>
+
+
+<button bindtap="bindFormSubmit" class="btn-admin margin-top-xs">提交</button>
+
+<view style="height:200rpx"></view>
+
+<!--SKIN begin-->
+<cmpt-modal wx:if="{{themeModalShow}}" model:show="{{themeModalShow}}" type="bottom" title="主题色" bind:click="bindCloseThemeCmpt" class="modal-form">
+	<view class="theme-list">
+		<view class="item" wx:for="{{theme}}" wx:key="key" bindtap="bindThemeTap" data-idx="{{index}}">
+			<view class="item-inner" style="background-image: linear-gradient({{item.color1}}, {{item.color2}})"><text wx:if="{{formTheme==index}}" class="icon-check"></text></view>
+		</view>
+	</view>
+</cmpt-modal>
+<!--SKIN END-->

@@ -1,0 +1,32 @@
+<template name="menuTpl"> 
+	<view class="tab-bar" >   
+		<view wx:if="{{returnHome}}" class="tab-bar-home" bindtap="url" data-type="relaunch"
+			data-url="/pages/home/index/home_index">
+			<text class="tab-bar-home-text icon-homefill text-grey"></text>
+		</view>
+
+		<view class="tab-bar-border"></view>
+		<view class="tab-bar-item" bindtap="url" data-type="relaunch" data-url="/projects/VOTE1/pages/default/index/default_index">
+			<image class="tab-icon" src="/projects/VOTE1/images/tabbar/home{{curMenu=='home_index'?'_cur':''}}.png"></image>
+			<view class="tab-text {{curMenu=='home_index'?'menu-project':''}}">首页</view>
+		</view>
+
+		<view class="tab-bar-item" bindtap="url" data-type="relaunch" data-url="/projects/VOTE1/pages/news/index/news_index">
+			<image class="tab-icon" src="/projects/VOTE1/images/tabbar/news{{curMenu=='news_index'?'_cur':''}}.png"></image>
+			<view class="tab-text {{curMenu=='news_index'?'menu-project':''}}">动态</view>
+		</view> 
+
+		<view class="tab-bar-item" bindtap="url" data-type="relaunch" data-url="/projects/VOTE1/pages/vote/index/vote_index">
+			<image class="tab-icon" src="/projects/VOTE1/images/tabbar/vote{{curMenu=='vote_index'?'_cur':''}}.png"></image>
+			<view class="tab-text {{curMenu=='vote_index'?'menu-project':''}}">投票</view>
+		</view> 
+
+	  
+		<view class="tab-bar-item" bindtap="url" data-type="relaunch" data-url="/projects/VOTE1/pages/my/index/my_index">
+			<image class="tab-icon" src="/projects/VOTE1/images/tabbar/my{{curMenu=='my_index'?'_cur':''}}.png"></image>
+			<view class="tab-text {{curMenu=='my_index'?'menu-project':''}}">我的</view>
+		</view>
+
+
+	</view>
+</template>

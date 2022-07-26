@@ -1,0 +1,51 @@
+<view wx:if="{{!_params}}" class="margin-top load loading text-l load-project"></view>
+<block wx:else>
+
+	<cmpt-comm-list type="vote-list" _params="{{_params}}" search="{{search}}" _menus="{{sortMenus}}" _items="{{sortItems}}" sortMenusDefaultIndex="{{sortMenusDefaultIndex}}" route="vote/list" topBottom="120" isTotalMenu="{{true}}" placeholder="搜索" bind:list="bindCommListCmpt">
+		<!--
+	<view class="up-project">
+		<image mode="widthFix" lazy-load src="{{upImg}}" />
+	</view>
+	-->
+		<!-- List Begin -->
+		<view class="vote-list">
+			<view class="item" wx:for="{{dataList.list}}" wx:key="key" bindtap="url" data-url="../detail/vote_detail?id={{item._id}}&theme={{item.VOTE_THEME}}">
+
+				<view class="right-top">
+					<block wx:if="{{item.statusDesc=='进行中'}}">
+						<view class="triangle"></view>
+						<view class="status">投票中</view>
+					</block>
+					<block wx:else>
+						<view class="triangle border-grey"></view>
+						<view class="status bg-grey">{{item.statusDesc}}</view>
+					</block>
+				</view>
+				<image class="loading" mode="aspectFill" src="{{item.VOTE_OBJ.cover[0]}}" />
+				<view class="line">
+					<view class="line1 content-cut-one">{{item.VOTE_TITLE}}</view>
+					<view class="line2 content-cut-one"><text class="icon-emoji margin-right-xxs text-main2"></text>{{item.VOTE_USER_CNT}}人参与，已投票：<text class="text-main2 text-bold">{{item.VOTE_CNT}}</text></view>
+					<view wx:if="{{item.VOTE_SHOW_START}}" class="line2 content-cut-one"><text class="icon-calendar margin-right-xxs text-main2"></text>{{item.start}}<text class="margin-left-xs margin-right-xs">{{item.weekStart}}</text>开始</view>
+					<view class="line2 content-cut-one"><text class="icon-time margin-right-xxs text-main2"></text>{{item.end}}<text class="margin-left-xs margin-right-xs">{{item.weekEnd}}</text>截止</view>
+					<view wx:if="{{item.statusDesc=='进行中'}}" class="my-status btn small radius bg-red light">去投票</view>
+				</view>
+			</view>
+
+		</view>
+
+		<!-- List END -->
+
+		<!--load begin-->
+		<import src="../../../../../tpls/public/list_load_tpl.wxml" />
+		<template is="listLoadTpl" data="{{skin:'load-project',dataList}}" />
+		<!--load end-->
+
+	</cmpt-comm-list>
+
+
+	<block wx:if="{{skin.IS_SUB}}">
+		<import src="../../tpls/menu_tpl.wxml" />
+		<template is="menuTpl" data="{{skin,curMenu:'vote_index',returnHome}}" />
+	</block>
+
+</block>

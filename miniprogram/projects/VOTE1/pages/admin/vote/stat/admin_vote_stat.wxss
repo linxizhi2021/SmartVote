@@ -1,0 +1,5 @@
+@import '../../../../../../style/public/admin.wxss';
+@import '../../../../../../style/base/table.wxss';
+.main-admin {
+	padding:20rpx 0;
+}

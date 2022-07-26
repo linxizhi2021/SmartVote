@@ -1,0 +1,103 @@
+<view class="main {{skin.IS_SUB?'sub-margin-bottom':''}}">
+
+	<!--top area begin-->
+	<view class="upside upside-shadow" bindtap="url" data-url="{{user?'../edit/my_edit':'../reg/my_reg'}}">
+		<image wx:if="{{upImg}}" mode="aspectFill" lazy-load class="upImg loading" src="{{upImg}}" />
+		<view class="user-bar">
+			<view class="detail">
+				<view class="name text-cut">{{user?user.USER_NAME:'欢迎回来~~~'}}</view>
+				<view class="desc">
+					<view class="text-cut">{{user?'欢迎回来~~~':'马上注册，使用更多功能'}}</view>
+				</view>
+			</view>
+			<view class="avatar">
+				<image mode="aspectFit" src="../../../images/tabbar/my_cur.png" />
+			</view>
+		</view>
+	</view>
+	<!--top area end-->
+
+	<!--down area begin-->
+	<view class="down padding-project">
+
+		<!--base begin -->
+		<view class="comm-list menu card-project shadow-project">
+			<view wx:if="{{user}}" class="item arrow" bindtap="url" data-url="../edit/my_edit">
+				<view class="content">
+					<text class="icon-edit my-icon-project text-green"></text>
+					<text class="text-black">修改我的个人资料</text>
+				</view>
+			</view>
+
+			<view class="item arrow" bindtap="url" data-url="../../vote/my_join_list/vote_my_join_list">
+				<view class="content">
+					<text class="icon-evaluate my-icon-project text-project"></text>
+					<text class="text-black">我的所有投票</text>
+				</view>
+			</view>
+
+			<view class="item arrow" bindtap="url" data-url="../fav/my_fav">
+				<view class="content">
+					<text class="icon-favor my-icon-project text-green"></text>
+					<text class="text-black">我的收藏</text>
+				</view>
+			</view>
+
+			<view class="item arrow" bindtap="url" data-url="../foot/my_foot">
+				<view class="content">
+					<text class="icon-footprint my-icon-project text-green"></text>
+					<text class="text-black">历史浏览</text>
+				</view>
+			</view>
+		</view>
+		<!--base end -->
+
+		<!--sys begin -->
+		<view class="comm-list menu card-project shadow-project">
+
+
+			<view class="item arrow" bindtap="url" data-url="../../about/index/about_index">
+				<view class="content">
+					<text class="icon-service my-icon-project text-purple"></text>
+					<text class="text-black">关于我们</text>
+				</view>
+			</view>
+
+			<block wx:if="{{skin.IS_SUB}}">
+				<view class="item arrow" bindtap="url" data-url="/pages/home/about/home_about">
+					<view class="content">
+						<text class="icon-phone my-icon-project text-cyan"></text>
+						<text class="text-orange">联系作者了解更多详情</text>
+					</view>
+				</view>
+				<view class="item arrow" bindtap="bindSetTap">
+					<view class="content">
+						<text class="icon-settings my-icon-project text-grey"></text>
+						<text class="text-red text-bold ">系统后台管理<text class="text-grey text-normal">（点击试用）</text></text>
+					</view>
+				</view>
+			</block>
+
+
+			<view wx:if="{{!skin.IS_SUB}}" class="item arrow" bindtap="bindSetTap">
+				<view class="content">
+					<text class="icon-settings my-icon-project text-grey"></text>
+					<text class="text-black">设置</text>
+				</view>
+			</view>
+
+		</view>
+		<!--sys end -->
+
+	</view>
+	<!--down area end-->
+
+</view>
+<view style="height:100rpx"></view>
+
+
+
+<block wx:if="{{skin.IS_SUB}}">
+	<import src="../../tpls/menu_tpl.wxml" />
+	<template is="menuTpl" data="{{curMenu:'my_index',returnHome:false}}" />
+</block>

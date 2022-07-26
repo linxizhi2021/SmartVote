@@ -1,0 +1,42 @@
+<view wx:if="{{isLoad===null}}" class="margin-top load notexist text-l text-grey"></view>
+<view wx:if="{{isLoad===false}}" class="margin-top load loading text-l text-grey"></view>
+
+<view class="main-admin" wx:if="{{isAdmin&&isLoad}}">
+	<scroll-view scroll-x style="font-size:30rpx;" class="bg-white tab text-bold text-center solid-bottom margin-bottom">
+		<view bindtap="bindModeTap" data-mode="order" class="item text-gray {{mode=='order'?'text-blue cur':''}}">按编号</view>
+		<view bindtap="bindModeTap" data-mode="desc" class="item text-gray {{mode=='desc'?'text-blue cur':''}}">按票数从多到少</view>
+		<view bindtap="bindModeTap" data-mode="asc" class="item text-gray {{mode=='asc'?'text-blue cur':''}}">按票数从少到多</view>
+	</scroll-view>
+	<view bindtap="url" data-url="../export/admin_vote_export" style="width:100%;text-align: right;padding:0rpx 20rpx 20rpx">
+		<view class="btn btn-project radius mid bg-blue">导出结果为Excel文件</view>
+	</view>
+
+	<view class="table margin-bottom sticky1" style="width:100%">
+		<view class="table-top">
+			<!-- 表格头 start -->
+			<view class="thead border">
+				<view class="td" style="width:120rpx;">编号</view>
+				<view class="td" style="width:120rpx;">名次</view>
+				<view class="td" style="width:300rpx;">选项</view>
+				<view class="td full">票数</view>
+			</view>
+			<!-- 表格头 end -->
+		</view>
+
+		<!-- 表格体 start -->
+		<view class="tbody">
+
+			<view class="tr stripe border" wx:for="{{stat}}" wx:key="key1">
+				<view class="td" style="width:120rpx">{{item.idx+1}}号</view>
+				<view class="td {{item.order==1?'bg-red light':''}} {{item.order==2?'bg-orange light':''}} {{item.order==3?'bg-yellow light':''}} " style="width:120rpx">{{item.order}}</view>
+				<view class="td" style="width:300rpx">{{item.label}}</view>
+				<view class="td full">{{item.cnt}}票<text class="margin-left-xs text-grey text-normal">({{item.per+'%'}})</text></view>
+			</view>
+		</view>
+
+		<view wx:if="{{stat===null}}" class="no-data">数据加载中...</view>
+		<view wx:if="{{stat.length==0}}" class="no-data">没有数据哦~</view>
+
+	</view>
+
+</view>
