@@ -3,7 +3,7 @@ const cloudHelper = require('../../helper/cloud_helper.js');
 
 module.exports = Behavior({
 	/**
-	 * 页面的初始数据
+	 * 页面的初始数 据 
 	 */
 	data: {
 	},
