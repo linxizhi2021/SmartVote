@@ -9,7 +9,7 @@
 4.  **分享设置** ：分享给好友和群聊，生成二维码海报，嵌入到公众号等等
 5.  **结果统计** ：排行名单，导出投票结果Excel
 
-![image](https://user-images.githubusercontent.com/97859420/181117718-6c8f348f-5efa-4c86-96ae-46dfb8f56086.png)
+![image](https://user-images.githubusercontent.com/97859420/181117777-d90a3333-604c-4db9-a0fb-0c012547f2fa.png)
 
 ![image](https://user-images.githubusercontent.com/97859420/181117728-fae6257d-8135-4fa0-b272-0f2974df6841.png)
 
