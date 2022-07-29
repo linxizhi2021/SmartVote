@@ -2,7 +2,7 @@ Component({
 	externalClasses: ['outside-picker-multi-class'],
 
 	/**
-	 * 组件的属性列表
+	 * 组 件的属性列表
 	 */
 	properties: {
 		sourceData: { //源数组 
